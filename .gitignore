@@ -1,6 +1,6 @@
 my-car/
 .agents/
-.claude/skills/
+.claude/skills
 __pycache__/
 *.pyc
 .DS_Store
