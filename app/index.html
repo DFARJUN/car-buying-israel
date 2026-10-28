@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>הרכב הבא שלי | השוואת רכבים</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><a class="brand" href="./">הרכב הבא שלי<span>CAR BUYING ISRAEL</span></a><button id="theme" class="quiet" aria-label="החלפת מצב בהיר או כהה">◐ תצוגה</button></header>
+<main>
+<section class="intro"><div><p class="eyebrow">האייג׳נט חוקר. כאן רואים את התמונה.</p><h1>סיכום חיפוש הרכב שלך</h1><p>מה חשוב לך, מה למדנו ואיך המועמדים משתווים.</p></div><button id="start-agent" class="primary">איך מתחילים עם האייג׳נט?</button></section>
+<section class="journey" aria-label="תהליך ההחלטה">
+<button id="step-needs"><span>01</span><strong>מה חשוב לי?</strong><small>צרכים, תנאי חובה ומשקולות</small></button>
+<button id="step-ai"><span>02</span><strong>מחקר וציון AI</strong><small>מחקר דגם + מחקר לפי מספר רכב</small></button>
+<button id="step-cost"><span>03</span><strong>עלות לשלוש שנים</strong><small>ירידת ערך, הוצאות ומימון</small></button>
+</section>
+<div id="connection" class="notice">התהליך מתנהל בשיחה עם האייג׳נט. הדף מתעדכן אוטומטית מקובץ הסיכום המקומי שלו.</div><section id="agent-summary" class="summary-panel" hidden></section>
+<div id="message" role="status" aria-live="polite"></div>
+<section class="stats" aria-label="סיכום"><div><span>מועמדים פעילים</span><strong id="count">0</strong></div><div><span>תקופת החזקה</span><strong id="horizon">36 חודשים</strong></div><div><span>תקרת מחיר הרכב</span><strong id="budget">ללא תקרה</strong></div></section>
+<details id="manual-tools"><summary>כלים ידניים אופציונליים</summary><p class="sub">לשימוש בהדגמה או ללא אייג׳נט מחובר. במסלול הרגיל האייג׳נט מנהל את הקובץ והדף מציג אותו לקריאה בלבד.</p><div class="actions"><button id="add">＋ הוספת רכב</button><button id="settings">צרכים ומשקולות</button><button id="export">ייצוא גיבוי JSON</button><label class="button">ייבוא JSON<input type="file" id="import" accept=".json,application/json" hidden></label><button id="demo" class="quiet">טעינת הדגמה פיקטיבית</button><button id="clear" class="quiet">התחלה מחדש</button></div></details><div class="actions"><button id="read-summary">הצרכים וההחלטות שלי</button><button id="download-summary">הורדת הסיכום כ־JSON</button></div>
+<section class="toolbar" aria-label="סינון"><label>חיפוש<input id="search" type="search" placeholder="שם, גרסה או הערה"></label><label>סוג רכישה<select id="type"><option value="">הכול</option value="used">יד שנייה</option><option value="zero-km">0 ק״מ</option><option value="new">חדש</option></select></label><label>מיון<select id="sort"><option value="name">שם</option><option value="cost">עלות החזקה</option><option value="price">מחיר</option><option value="score">דירוג משוקלל</option></select></label><label class="check"><input id="hidden" type="checkbox">כולל מוסתרים</label><button id="compare">השוואת מסומנים (0/3)</button></section>
+<div id="table"></div>
+<section id="empty" class="empty"><span class="empty-icon">↔</span><h2>ההשוואה שלך מתחילה כאן</h2><p>בקשו מהאייג׳נט להפעיל car-buying-guide. הוא ישאל, יחקור ויעדכן כאן את הסיכום. אין צורך למלא טפסים באתר.</p></section>
+<p class="footnote">״עומד במסננים״ מתייחס לתקציב, ק״מ ותיבה שהגדרתם בלבד. זה אינו אישור לבטיחות, תקינות או בעלות. ציון חלקי לא מוצג כציון מלא.</p>
+<footer>כלי פתוח לקהילה · ללא פרסומות או מעקב · <a href="https://github.com/DFARJUN/car-buying-israel" target="_blank" rel="noopener noreferrer">קוד ומדריך שימוש ↗</a></footer>
+</main>
+<dialog id="editor"><form id="car-form"><div class="dialog-head"><h2 id="editor-title">הוספת רכב</h2><button type="button" data-close aria-label="סגירה">✕</button></div><div id="fields"></div><p id="form-error" class="error" role="alert"></p><div class="dialog-actions"><button class="primary" type="submit">שמירת הרכב</button><button type="button" data-close>ביטול</button></div></form></dialog>
+<dialog id="prefs"><form id="prefs-form"><div class="dialog-head"><h2>הצרכים שלך קובעים</h2><button type="button" data-close aria-label="סגירה">✕</button></div><p>תנאי חובה נפרדים מהדירוג. השאירו מגבלה ריקה אם אין כזו.</p><div id="pref-fields"></div><p id="prefs-error" class="error" role="alert"></p><div class="dialog-actions"><button class="primary">שמירת העדפות</button><button type="button" data-close>ביטול</button></div></form></dialog>
+<dialog id="comparison" class="wide"><div class="dialog-head"><h2>אחד מול השני</h2><button data-close aria-label="סגירה">✕</button></div><div id="comparison-body"></div></dialog>
+<dialog id="ai-guide"><div class="dialog-head"><h2>מחקר קודם. ציון אחר כך.</h2><button data-close aria-label="סגירה">✕</button></div>
+<p>כלי ה־AI שלכם מבצע שתי בדיקות נפרדות, ואז מדרג לפי מה שחשוב לכם:</p>
+<ol><li><strong>מחקר דגם:</strong> גרסה מדויקת, אמינות, בטיחות, מרחב, טיפולים ושמירת ערך.</li><li><strong>מחקר לפי מספר רכב:</strong> נתוני רישום, ק״מ, סוגי בעלות וריקול, לצד מסמכי טיפולים ובדיקה.</li><li><strong>ציון AI:</strong> נימוק ומקור לכל ממד, התאמות לרכב המסוים ומידע שחסר.</li></ol>
+<p>כתבו לאייג׳נט בפרויקט:</p>
+<blockquote>הפעל car-buying-guide. שאל אותי מה חשוב לי, חקור דגמים ורכבים לפי מספר רישוי, הפק ציון AI ועלות משוערת לשלוש שנים. עדכן את my-car/comparison.json ופתח לי את דף הסיכום.</blockquote>
+<p class="sub">אין כאן מודל AI מובנה או חיבור אוטומטי למשרד התחבורה. המחקר מבוצע באמצעות Codex או Claude Code עם גישה למקורות. הדף קורא אוטומטית את קובץ הסיכום שהאייג׳נט שומר. אין צורך בייבוא ידני. אם אין גישה למקור, הנתון נשאר לא מאומת.</p></dialog>
+<dialog id="needs-summary"><div class="dialog-head"><h2>מה חשוב לי?</h2><button data-close aria-label="סגירה">✕</button></div><div id="needs-body"></div></dialog>
+<dialog id="vehicle-summary"><div class="dialog-head"><h2 id="vehicle-title">מחקר רכב</h2><button data-close aria-label="סגירה">✕</button></div><div id="vehicle-body"></div></dialog>
+<script type="module" src="app.mjs"></script>
+</body></html>

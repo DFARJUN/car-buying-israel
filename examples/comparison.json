@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "settings": {
+    "months": 36,
+    "budget": 120000,
+    "max_km": 80000,
+    "automatic_only": true,
+    "weights": {
+      "reliability": 20,
+      "resale": 20,
+      "space": 20,
+      "safety": 20,
+      "running_cost": 20
+    },
+    "usage": "דוגמה פיקטיבית: נסיעות מעורבות.",
+    "must_haves": "דוגמה בלבד: תיבה אוטומטית ומגבלות התקציב והק״מ.",
+    "top_priority": "דוגמה: איזון בין חמשת הממדים. יש לשנות לפי מה שחשוב לכם."
+  },
+  "cars": [
+    {
+      "id": "demo-1",
+      "name": "רכב הדגמה א׳",
+      "variant": "דגם פיקטיבי, אוטומטי",
+      "year": 2023,
+      "km": 42000,
+      "price": 80000,
+      "purchase_type": "used",
+      "fuel": "petrol",
+      "transmission": "automatic",
+      "status": "לבדוק",
+      "hidden": false,
+      "personal_rating": null,
+      "source_url": "",
+      "checked_at": "",
+      "notes": "נתוני הדגמה בלבד. אין כאן דגם אמיתי או הצעת מחיר.",
+      "flags": "נדרש אימות של כל הנתונים לפני רכישה.",
+      "scores": {
+        "reliability": {
+          "value": 7,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "resale": {
+          "value": 8,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "space": {
+          "value": 6,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "safety": {
+          "value": 7,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "running_cost": {
+          "value": 8,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        }
+      },
+      "costs": {
+        "resale": 52000,
+        "resale_low": 42000,
+        "resale_high": 58000,
+        "one_time": 1800,
+        "annual": {
+          "energy": 7000,
+          "insurance": 5000,
+          "licensing": 1600,
+          "service": 1500,
+          "repairs": 2000,
+          "other": 0
+        },
+        "loan": null,
+        "assumptions": "כל הסכומים פיקטיביים, בשקלים של היום. אחרות הוחרגו (0). הרגישות משנה רק את שווי המכירה.",
+        "horizon_months": 36
+      },
+      "plate": "",
+      "rating_origin": "demo",
+      "model_research": "מחקר דגם פיקטיבי להדגמת מבנה בלבד. אין מסקנות אמיתיות.",
+      "vehicle_research": "אין מספר רישוי אמיתי או בדיקת רכב בדוגמה."
+    },
+    {
+      "id": "demo-2",
+      "name": "רכב הדגמה ב׳",
+      "variant": "דגם פיקטיבי, אוטומטי",
+      "year": 2024,
+      "km": 30,
+      "price": 110000,
+      "purchase_type": "zero-km",
+      "fuel": "hybrid",
+      "transmission": "automatic",
+      "status": "לבדוק",
+      "hidden": false,
+      "personal_rating": null,
+      "source_url": "",
+      "checked_at": "",
+      "notes": "נתוני הדגמה בלבד. אין כאן דגם אמיתי או הצעת מחיר.",
+      "flags": "נדרש אימות של כל הנתונים לפני רכישה.",
+      "scores": {
+        "reliability": {
+          "value": 8,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "resale": {
+          "value": 6,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "space": {
+          "value": 7,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "safety": {
+          "value": 8,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "running_cost": {
+          "value": 6,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        }
+      },
+      "costs": {
+        "resale": 77000,
+        "resale_low": 67000,
+        "resale_high": 83000,
+        "one_time": 2300,
+        "annual": {
+          "energy": 5200,
+          "insurance": 5600,
+          "licensing": 1600,
+          "service": 1500,
+          "repairs": 1300,
+          "other": 0
+        },
+        "loan": {
+          "principal": 60000,
+          "annual_rate": 6,
+          "months": 48,
+          "balloon": 12000,
+          "fees": 500
+        },
+        "assumptions": "כל הסכומים פיקטיביים, בשקלים של היום. אחרות הוחרגו (0). הרגישות משנה רק את שווי המכירה.",
+        "horizon_months": 36
+      },
+      "plate": "",
+      "rating_origin": "demo",
+      "model_research": "מחקר דגם פיקטיבי להדגמת מבנה בלבד. אין מסקנות אמיתיות.",
+      "vehicle_research": "אין מספר רישוי אמיתי או בדיקת רכב בדוגמה."
+    },
+    {
+      "id": "demo-3",
+      "name": "רכב הדגמה ג׳",
+      "variant": "דגם פיקטיבי, אוטומטי",
+      "year": 2025,
+      "km": 0,
+      "price": 135000,
+      "purchase_type": "new",
+      "fuel": "electric",
+      "transmission": "automatic",
+      "status": "לבדוק",
+      "hidden": false,
+      "personal_rating": null,
+      "source_url": "",
+      "checked_at": "",
+      "notes": "נתוני הדגמה בלבד. אין כאן דגם אמיתי או הצעת מחיר.",
+      "flags": "נדרש אימות של כל הנתונים לפני רכישה.",
+      "scores": {
+        "reliability": {
+          "value": 6,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "resale": {
+          "value": 7,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "space": {
+          "value": 8,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "safety": {
+          "value": 6,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        },
+        "running_cost": {
+          "value": 7,
+          "reason": "ציון פיקטיבי להדגמת המשקולות בלבד."
+        }
+      },
+      "costs": {
+        "resale": 90000,
+        "resale_low": 80000,
+        "resale_high": 96000,
+        "one_time": 2800,
+        "annual": {
+          "energy": 3400,
+          "insurance": 6200,
+          "licensing": 1600,
+          "service": 1500,
+          "repairs": 600,
+          "other": 0
+        },
+        "loan": null,
+        "assumptions": "כל הסכומים פיקטיביים, בשקלים של היום. אחרות הוחרגו (0). הרגישות משנה רק את שווי המכירה.",
+        "horizon_months": 36
+      },
+      "plate": "",
+      "rating_origin": "demo",
+      "model_research": "מחקר דגם פיקטיבי להדגמת מבנה בלבד. אין מסקנות אמיתיות.",
+      "vehicle_research": "אין מספר רישוי אמיתי או בדיקת רכב בדוגמה."
+    }
+  ],
+  "summary": {
+    "stage": "הדגמה פיקטיבית",
+    "recommendation": "כך ייראה הסיכום שהאייג׳נט יכין עבורכם.",
+    "rationale": "בדוגמה: שלושה מועמדים, מחקר דגם ורכב, ציון משוקלל ועלות ל־36 חודשים.",
+    "tradeoff": "כל הנתונים פיקטיביים. אין המלצה לרכישה ואין מחקר אמיתי בדוגמה.",
+    "next_action": "התחילו שיחה עם car-buying-guide. האייג׳נט ישאל מה חשוב לכם ויבנה את התיק.",
+    "updated_at": "2026-10-28",
+    "coverage": "הדגמה בלבד. לא נבדקו מודעות או כלי רכב אמיתיים."
+  }
+}

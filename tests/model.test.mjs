@@ -1,0 +1,21 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {validate,costs,loanSchedule,fit,score,emptyDB,blankCar} from '../app/model.mjs';
+const sample=()=>JSON.parse(readFileSync(new URL('../examples/comparison.json',import.meta.url),'utf8'));
+const near=(a,b)=>assert.ok(Math.abs(a-b)<0.0001,`${a} != ${b}`);
+test('fictional sample and empty database validate',()=>{assert.deepEqual(validate(sample()),[]);assert.deepEqual(validate(emptyDB()),[]);});
+test('cash purchase: depreciation not purchase plus depreciation',()=>{const db=sample(),c=db.cars[0],t=costs(c,36);near(t.total,80000-52000+(7000+5000+1600+1500+2000)*3+1800);near(t.cash_before_sale-t.net_sale,t.total);});
+test('zero interest balloon and full repayment',()=>{const l={principal:60000,annual_rate:0,months:24,balloon:12000,fees:500};const early=loanSchedule(l,12),end=loanSchedule(l,24);near(early.payment,2000);near(early.balance,36000);near(end.balance,0);near(end.paid,60000);near(end.finance_cost_total,500);});
+test('known amortising loan reference',()=>{const x=loanSchedule({principal:100000,annual_rate:12,months:12,balloon:0,fees:0});near(x.payment,8884.878867834);near(x.balance,0);near(x.interest,x.paid-100000);});
+test('financed purchase cash-flow identity across horizons',()=>{const c=sample().cars[1];for(const n of [1,12,36,48,60]){c.costs.horizon_months=n;const t=costs(c,n);near(t.total,t.cash_before_sale-t.net_sale);}assert.equal(costs(c,60).loan.balance,0);});
+test('missing annual expense suppresses total, zero is explicit',()=>{const c=sample().cars[0];c.costs.annual.repairs=null;assert.equal(costs(c,36).complete,false);c.costs.annual.repairs=0;assert.equal(costs(c,36).complete,true);});
+test('resale sensitivity moves only depreciation',()=>{const t=costs(sample().cars[0],36);near(t.high-t.total,10000);near(t.total-t.low,6000);});
+test('unknown requirement is pending and cannot pass',()=>{const d=sample(),c=d.cars[0];c.km=null;assert.equal(fit(c,d.settings).state,'pending');c.price=130000;assert.equal(fit(c,d.settings).state,'fail');});
+test('missing weighted score or reason suppresses overall',()=>{const d=sample(),c=d.cars[0];c.scores.safety.value=null;assert.equal(score(c,d.settings.weights),null);d.settings.weights.safety=0;assert.ok(score(c,d.settings.weights)>0);c.scores.reliability.reason='';assert.equal(score(c,d.settings.weights),null);});
+test('malformed imports rejected without a crash',()=>{for(const value of [null,[],{}, {version:1,cars:[null],settings:{}}])assert.ok(validate(value).length);const d=sample();d.cars[0].source_url='javascript:alert(1)';assert.ok(validate(d).length);});
+test('negative, non-finite, duplicate and fractional term rejected',()=>{for(const mutate of [d=>d.cars[0].price=-1,d=>d.cars[0].km=Infinity,d=>d.cars[1].id=d.cars[0].id,d=>d.settings.months=3.5,d=>d.cars[1].costs.loan.balloon=90000,d=>d.cars[1].costs.loan.principal=150000]){const d=sample();mutate(d);assert.ok(validate(d).length);}});
+test('blank user record retains unknowns',()=>{const d=emptyDB(),c=blankCar();c.name='מועמד';d.cars.push(c);assert.deepEqual(validate(d),[]);assert.equal(costs(c,36).complete,false);assert.equal(score(c,d.settings.weights),null);});
+
+test('changing horizon requires a refreshed resale estimate',()=>{const c=sample().cars[0];assert.equal(costs(c,48).complete,false);c.costs.horizon_months=48;assert.equal(costs(c,48).complete,true);});
+test('tiny positive rates stay numerically stable',()=>{const x=loanSchedule({principal:12000,annual_rate:1e-12,months:12,balloon:0,fees:0});near(x.payment,1000);near(x.balance,0);});

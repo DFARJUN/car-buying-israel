@@ -1,0 +1,10 @@
+my-car/
+.agents/
+.claude/skills/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+.secrets/
+node_modules/
